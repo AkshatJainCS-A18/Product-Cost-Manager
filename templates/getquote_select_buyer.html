@@ -1,0 +1,109 @@
+{%extends 'base.html'%} {% block content%}
+<title>PARICOTT | Get Quote</title>
+
+{% load static%}
+<link rel="stylesheet" type="text/css" href="{% static 'topdf.css' %}" />
+<form action="getquote_1" method="post">
+<h2>Create Quotation</h2>
+<br /><br />
+  {% csrf_token %}
+  <div id="boxes" class="boxes">
+    <div id="leftbox" class="leftbox">
+      <table>
+        <tr>
+          <td><label for="Date">Date:</label></td>
+          <td><input
+            type="date"
+            name="Date"
+            id="Date"
+            required
+          /></td> <td>
+          <label for="noQuote">Quote:</label></td> <td>
+            <input
+              type="text"
+              name="noQuote"
+              id="noQuote"
+              placeholder="{{last_quote_id}}"
+              required
+            /></td>
+        </tr>
+        <tr>
+          <td><label for="Abrv">Abrv:</label></td>
+          <td><input type="text" name="Abrv" id="Abrv" placeholder="{{Abrv}}" /></td>
+          <td><label for="buyerlist">Or Select  :</label></td>
+          <td><select name="buyer" id="buyer" >
+            <option value="none" ,disabled selected>Select buyer</option>
+            {%for buyerlist in buyerlist %}
+            <option value="{{buyerlist}}">{{buyerlist}}</option>
+            {%endfor%}
+          </select></td>
+        </tr>
+        <tr>
+          <td><label for="CompanyName">Company Name:</label></td>
+          <td><input
+            type="text"
+            name="CompanyName"
+            id="CompanyName"
+            placeholder="{{CompName}}"
+            
+          /></td>
+        <td><label for="created_by">Created By Name:</label></td>
+          <td>
+            <select name="user" id="user" required>
+              <option value="", disable>Created By</option>
+              {%for user in userlist %}
+              <option value="{{user}}">{{user}}</option>
+              {%endfor%}
+            </select>
+          </td>
+        </tr>
+        <tr>
+          <td><label for="CompanyAdd">Company Address:</label></td>
+          <td><textarea
+            name="CompanyAdd"
+            id="CompanyAdd"
+            cols="30"
+            rows="3"
+            placeholder="{{CompAdd}}"
+          ></textarea></td>
+        </tr>
+        <tr>
+          <td><label for="BuyerName">Buyer Name:</label></td>
+          <td><input
+            type="text"
+            name="BuyerName"
+            id="BuyerName"
+            
+            placeholder="{{BuyerName}}"
+          /></td>
+        </tr>
+        <tr>
+          <td><label for="Buyerinfo">Buyer info:</label></td>
+          <td><textarea
+            name="Buyerinfo"
+            id="Buyerinfo"
+            cols="30"
+            rows="3"
+            placeholder="{{BuyerDet}}"
+          >{{BuyerDet}}</textarea></td>
+        </tr>
+      </table>
+
+      <label for="T&C">Terms & Conditions:</label> <br>
+      <textarea
+        name="T&C"
+        id="T&C"
+        cols="54"
+        rows="5"
+        textContent="hi"
+        
+        placeholder="{{TandC}}"
+      >{{TandC}}</textarea><br>
+      <input type="submit" value="Next" />
+  
+    </div>
+      </table>
+    </div>
+    
+</form>
+{% endblock %}

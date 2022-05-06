@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    {% load static%}
+    <link rel="icon" type="image/x-icon" href="{% static 'logo.ico' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'styles.css' %}" />
+  </head>
+  <body>
+    <div class="banner">
+      <header class="site-header">
+        <span class="logo">
+          <a href="/"><img src="{% static 'logo.png' %}" alt="Logo" /></a>
+        </span>
+        <nav class="nav-bar">
+          <!-- <ul class="header-list">
+            <a href="/"><li class="header-list-item">Home</li></a>
+            <a href="/base"><li class="header-list-item">Base Cup</li></a>
+            <a href="/packcost"><li class="header-list-item">Pack Cost</li></a>
+            <a href="/topdf"><li class="header-list-item">To Pdf</li></a>
+            <a href="/calib"><li class="header-list-item">Caliberate</li></a>
+            <a href="/admin/"><li class="header-list-item">Login</li></a>
+          </ul> -->
+          <div class="dropdown">
+            <button class="dropbtn">Cost Calculator</button>
+            <div class="dropdown-content">
+              <a href="/getquote_1">Calculate & Create Quotation</a>
+              <a href="/base">Calculate Base Cup Cost</a>
+              <a href="/packcost">Calculate Pkg & Transportation Cost</a>
+              <a href="/topdf">Create Quotation</a>
+            </div>
+          </div>
+        </nav>
+      </header>
+      <br />
+      <div class="content">{% block content%} {% endblock %}</div>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,13 @@
+{%extends 'base.html'%} {% block content%}
+<title>Test Page</title>
+<form action="/test" method="post">
+  {% csrf_token %}
+  <select name="user" id="user" required>
+    <option value="{{user}}" ,disable selected>Created By</option>
+    {%for user in user %}
+    <option value="{{user}}">{{user}}</option>
+    {%endfor%}
+  </select>
+  <input type="submit" value="Submit" />
+</form>
+{{result}} {% endblock %}

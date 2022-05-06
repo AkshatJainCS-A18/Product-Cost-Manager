@@ -1,0 +1,107 @@
+{%extends 'base.html'%} {% block content%}
+<title>PARICOTT | BaseCup</title>
+{% load static%}
+<link rel="stylesheet" type="text/css" href="{% static 'topdf.css' %}" />
+<h2>Calculate Base Cup Cost</h2>
+<br /><br />
+<form action="getquote_2" method="POST">
+  {% csrf_token %}
+  <table>
+    <tr>
+      <td><label for="size_of_cup">Size of Cup:</label></td>
+      <td>
+        <select name="size_of_cup" id="size_of_cup" required>
+          <option value="{{size_of_cup}}" , selected>{{size_of_cup}}</option>
+          {%for size in size %}
+          <option value="{{size}}">{{size}}</option>
+          {%endfor%}
+        </select>
+      </td>
+    </tr>
+    <tr>
+      <td><label for="gsm">Cup GSM:</label></td>
+      <td>
+        <input
+          type="number"
+          name="gsm"
+          id="gsm"
+          value="{{gsm}}"
+          min="0"
+          placeholder="175"
+          required
+        />
+      </td>
+    </tr>
+    <tr>
+      <td><label for="bottom_gsm">Bottom GSM:</label></td>
+      <td>
+        <input
+          type="number"
+          name="bottom_gsm"
+          id="bottom_gsm"
+          value="{{bottom_gsm}}"
+          min="0"
+          placeholder="175"
+        />
+      </td>
+    </tr>
+    <tr>
+      <td><label for="paper_rate">Paper Rate:</label></td>
+      <td>
+        <input
+          type="number"
+          name="paper_rate"
+          id="paper_rate"
+          value="{{paper_rate}}"
+          min="0"
+          placeholder="75"
+          required
+        />
+      </td>
+    </tr>
+    <tr>
+      <td><label for="scrape_rate">Scrape Rate:</label></td>
+      <td>
+        <input
+          type="number"
+          name="scrape_rate"
+          id="scrape_rate"
+          value="{{scrape_rate}}"
+          min="0"
+          placeholder="12"
+          required
+        />
+      </td>
+    </tr>
+    <tr>
+      <td><label for="margin">Margin:</label></td>
+      <td>
+        <input
+          type="number"
+          name="margin"
+          id="margin"
+          value="{{margin}}"
+          min="0"
+          placeholder="5"
+          required
+        />
+      </td>
+    </tr>
+  </table>
+
+  <input type="hidden" name="Date" value="{{Date}}" />
+  <input type="hidden" name="noQuote" value="{{No_quote}}" />
+  <input type="hidden" name="Abrv" value="{{Abrv}}" />
+  <input type="hidden" name="CompanyName" value="{{CompName}}" />
+  <input type="hidden" name="CompanyAdd" value="{{CompAdd}}" />
+  <input type="hidden" name="BuyerName" value="{{BuyerName}}" />
+  <input type="hidden" name="Buyerinfo" value="{{BuyerDet}}" />
+  <input type="hidden" name="T&C" value="{{TandC}}" />
+  <input type="hidden" name="user" value="{{user}}" />
+
+  <input type="submit" value="Calculate" name="Calculate" />
+  <input type="submit" value="Next" name="Next" />
+</form>
+<br />
+<strong>Result!</strong> Base cup cost of {{size_of_cup}} is ₹{{base_cup_cost}}
+{% endblock %}

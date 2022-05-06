@@ -1,0 +1,171 @@
+{%extends 'base.html'%} {% block content%}
+<title>PARICOTT | PackCalc</title>
+{% load static%}
+<link rel="stylesheet" type="text/css" href="{% static 'topdf.css' %}" />
+<h2>Calculate Pkg & Transportation Cost</h2>
+<br /><br />
+<form action="packcost" method="post">
+  {% csrf_token %}
+  <table> 
+    <tr>
+      <td><label for="size_of_cup">Size of Cup:</label></td>
+      <td>
+        <select name="size_of_cup" id="size_of_cup" required>
+          <option value="{{size_of_cup}}" , selected>{{size_of_cup}}</option>
+            {{size_of_cup}}
+          </option>
+          {%for size in size %}
+          <option value="{{size}}">{{size}}</option>
+          {%endfor%}
+        </select>
+      </td>
+    </tr>
+    <tr>
+      <td><label for="CostperCup">Cost per Cup:</label></td>
+      <td>
+        <input
+          type="text"
+          name="CostperCup"
+          id="CostperCup"
+          placeholder="0.25"
+          value="{{base_cup_cost}}"
+          required
+        />
+      </td>
+    </tr>
+    <tr>
+      <td><label for="CupsperSKU">Cups per SKU:</label></td>
+      <td>
+        <input
+          type="text"
+          name="CupsperSKU"
+          id="CupsperSKU"
+          placeholder="50"
+          value="{{CupsperSKU}}"
+          required
+        />
+      </td>
+    </tr>
+    <tr>
+      <td><label for="SKUperMC">SKU per MC:</label></td>
+      <td>
+        <input
+          type="text"
+          name="SKUperMC"
+          id="SKUperMC"
+          placeholder="20"
+          value="{{SKUperMC}}"
+          required
+        />
+      </td>
+    </tr>
+    <tr>
+      <td><label for="PrintingCost">Printing Cost per Cup:</label></td>
+      <td>
+        <input
+          type="text"
+          name="PrintingCost"
+          id="PrintingCost"
+          placeholder="0.02"
+          value="{{CostPrintColorperCup}}"
+          required
+        />
+      </td>
+    </tr>
+    <tr>
+      <td><label for="LabelCost">Label Cost per SKU:</label></td>
+      <td>
+        <input
+          type="text"
+          name="LabelCost"
+          id="LabelCost"
+          placeholder="2"
+          value="{{LabelCost}}"
+          required
+        />
+      </td>
+    </tr>
+    <tr>
+      <td><label for="PolyCost">Poly Cost per SKU:</label></td>
+      <td>
+        <input
+          type="text"
+          name="PolyCost"
+          id="PolyCost"
+          placeholder=".5"
+          value="{{PolyCost}}"
+          required
+        />
+      </td>
+    </tr>
+    <tr>
+      <td><label for="MCCost">Master Carton Cost:</label></td>
+      <td>
+        <input
+          type="text"
+          name="MCCost"
+          id="MCCost"
+          placeholder="20"
+          value="{{MCCost}}"
+          required
+        />
+      </td>
+    </tr>
+    <tr>
+      <td><label for="Freight">Freight per conatiner:</label></td>
+      <td>
+        <input
+          type="text"
+          name="Freight"
+          id="Freight"
+          placeholder="50000"
+          value="{{Freight}}"
+          required
+        />
+      </td>
+    </tr>
+    <tr>
+      <td><label for="BoxsPerContainer">Boxes(MC) per conatiner:</label></td>
+      <td>
+        <input
+          type="text"
+          name="BoxsPerContainer"
+          id="BoxsPerContainer"
+          placeholder="2256"
+          value="{{BoxsPerContainer}}"
+          required
+        />
+      </td>
+    </tr>
+    <tr>
+      <td><label for="DollorRate">Dollor Rate:</label></td>
+      <td>
+        <input
+          type="text"
+          name="DollorRate"
+          id="DollorRate"
+          placeholder="72"
+          value="{{DollorRate}}"
+          required
+        />
+      </td>
+    </tr>
+    <tr>
+      <td><label for="AddCostperSKU">Additional Cost per SKU:</label></td>
+      <td>
+        <input
+          type="text"
+          name="AddCostperSKU"
+          id="AddCostperSKU"
+          placeholder=".5"
+          value="{{AddCostperSKU}}"
+          required
+        />
+      </td>
+    </tr>
+  </table>
+  <input type="submit" value="Calculate" />
+</form>
+<strong>Result!</strong><br />
+Cost of Master Carton ₹{{MCcostinINR}} & ${{MCcostinDollor}} Dollor <br />
+Cost of SKU ₹{{SKUcostinINR}} & ${{SKUcostinDollor}} Dollor {% endblock %}
